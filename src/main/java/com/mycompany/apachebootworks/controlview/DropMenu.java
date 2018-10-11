@@ -7,7 +7,6 @@ package com.mycompany.apachebootworks.controlview;
 
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 
 /**
  *
@@ -15,11 +14,9 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
  */
 public class DropMenu extends Panel {
 
-    WebMarkupContainer css = new WebMarkupContainer("DropMenuCSS");
-
     public DropMenu(String id) {
         super(id);
-        add(css);
+  //      add(css);
         add(new Link<Void>("index") {
             @Override
             public void onClick() {
@@ -29,13 +26,13 @@ public class DropMenu extends Panel {
         add(new Link<Void>("aboutpage") {
             @Override
             public void onClick() {
-                setResponsePage(AboutPage.class);
+            //    setResponsePage(AboutPage.class);
             }
         });
         add(new Link<Void>("filespage") {
             @Override
             public void onClick() {
-                setResponsePage(FilesPage.class);
+              //  setResponsePage(FilesPage.class);
             }
         });
     }

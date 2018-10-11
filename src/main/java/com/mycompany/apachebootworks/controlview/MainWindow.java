@@ -5,15 +5,16 @@
  */
 package com.mycompany.apachebootworks.controlview;
 
-import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.panel.Panel;
 
 /**
  *
- * @author tommib
+ * @author Tommi
  */
-public class FilesPage extends WebPage {
-
-    public FilesPage() {
-        add(new DropMenu("dropmenu"));
+public class MainWindow extends Panel{
+    
+    public MainWindow(String id){
+        super(id);
     }
+    
 }

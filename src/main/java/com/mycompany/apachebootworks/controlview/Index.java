@@ -19,5 +19,6 @@ public class Index extends WebPage{
     public Index(){
         add(new Label("title", "Juurivuohi Works"));
         add(new DropMenu("dropmenu"));
+        add(new MainWindow("window"));
     }
 }   
