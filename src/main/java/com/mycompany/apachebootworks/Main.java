@@ -1,5 +1,6 @@
 package com.mycompany.apachebootworks;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -13,6 +14,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  *
  * @author tommib
  */
+
 @SpringBootApplication
 public class Main {
 
