@@ -9,12 +9,23 @@ and open the template in the editor.
         <title>Juurivuohi works</title>
         <wicket:link>
             <link rel="stylesheet" type="text/css" href="./css/Index.css"/>
+            <link rel="Stylesheet" type="text/css" href="./css/MainWindow.css"/>
+            <link rel="Stylesheet" type="text/css" href="./css/DropMenu.css"/>
         </wicket:link>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div wicket:id="dropmenu"/>
-        <div wicket:id="window"/>
+        <div class="dropdown">
+            <button class="dropbtn">Menu</button>
+            <div class="dropdown-content">
+                <div wicket:id="indexpage">Home</div> 
+                <div wicket:id="aboutpage">About</div> 
+                <div wicket:id="filespage">Files</div> 
+            </div>
+        </div>
+        <div class="window">
+            <h1 wicket:id='title'></h1>
+        </div>
     </body>
 </html>

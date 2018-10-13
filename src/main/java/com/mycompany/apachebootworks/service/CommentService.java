@@ -5,7 +5,7 @@
  */
 package com.mycompany.apachebootworks.service;
 
-import com.mycompany.apachebootworks.model.CommentRepository;
+import com.mycompany.apachebootworks.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
