@@ -5,49 +5,34 @@
  */
 package com.mycompany.apachebootworks.front;
 
-import org.apache.wicket.markup.html.WebPage;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
-import javax.annotation.PostConstruct;
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.WebPage;
 
 /**
- * 
- *  !!! EHDOTUS: LISÄÄ TÄMÄ WICKET FRONTTI JA TARVITTAVAT KIRJASTOT VANHAAN PROJEKTIIN.
+ *
+ * !!! EHDOTUS: LISÄÄ TÄMÄ WICKET FRONTTI JA TARVITTAVAT KIRJASTOT VANHAAN
+ * PROJEKTIIN.
  */
 @WicketHomePage
 public class Index extends WebPage {
 
-    public Index() {
-        // Alustetaan child komponentti 
-        Label title = new Label("title", "Home");
-        add(title); // Lisätään title markup(Html) käyttöön.
-        title.setOutputMarkupId(true); // Lisätään title Ajaxilla muokattavaksi
-        // Alustetaan title komponentti
+    private Component homePanel = new HomePanel("home");
+    private Component aboutPanel = new AboutPanel("about");
 
-        //****************************
-        add(new AjaxLink<Void>("indexpage") {
+    public Index() {
+        add(homePanel);
+        add(aboutPanel);
+        homePanel.setOutputMarkupId(true);
+        aboutPanel.setOutputMarkupId(true);
+        add(new AjaxLink<Void>("click") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-                title.setDefaultModelObject("Home");
-                art.add(title);
+                homePanel.setVisible(false);
+                aboutPanel.setVisible(true);
             }
         });
-        add(new AjaxLink<Void>("aboutpage") {
-            @Override
-            public void onClick(AjaxRequestTarget art) {
-                title.setDefaultModelObject("About");
-                art.add(title);
-            }
-        });
-        add(new AjaxLink<Void>("filespage") {
-            @Override
-            public void onClick(AjaxRequestTarget art) {
-                title.setDefaultModelObject("Files");
-                art.add(title);
-            }
-        });
-        //****************************
     }
 }

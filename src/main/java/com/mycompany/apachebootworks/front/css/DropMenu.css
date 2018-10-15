@@ -7,10 +7,10 @@ and open the template in the editor.
     Created on : 11.10.2018, 14:13:44
     Author     : Can't remember who to credit :(
 */
-
 .dropdown {
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .dropbtn {
