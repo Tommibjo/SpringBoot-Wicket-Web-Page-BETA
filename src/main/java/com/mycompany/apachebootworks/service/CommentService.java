@@ -5,7 +5,12 @@
  */
 package com.mycompany.apachebootworks.service;
 
+import com.mycompany.apachebootworks.repository.Comment;
 import com.mycompany.apachebootworks.repository.CommentRepository;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +24,15 @@ public class CommentService {
     
     @Autowired
     private CommentRepository commentRepository;
+    
+    public List getAllComments(){
+        return this.commentRepository.findAll();
+    }
+    
+    public void addComment(String name, String comment){
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        Date date = new Date();        
+        commentRepository.saveAndFlush(new Comment(name, comment, dateFormat.format(date)));
+    }   
     
 }

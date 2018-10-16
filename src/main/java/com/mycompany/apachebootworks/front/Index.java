@@ -22,6 +22,7 @@ public class Index extends WebPage {
     private Component homePanel = new HomePanel("home"); // "home" string within HomePanel constructor is HTML TAG 
     private Component aboutPanel = new AboutPanel("about"); // "about" string within AboutPAnel constructor is HTML TAG 
     private Component filePanel = new FilePanel("files"); // "files" string within FilePanel constructor is HTML TAG 
+   // private Component commentPanel = new CommentPanel("comment"); // "comment" string withing CommentPanel constructor is HTML tag // FOR SOME REASON COMMENTPANEL CAUSES CONSTRUCTOR ERROR @ INDEX.CLASS.
 
     public Index() {
 
@@ -30,7 +31,7 @@ public class Index extends WebPage {
         aboutPanel.setVisible(false); // hide aboutPanel
         add(filePanel); // add filePanel to be used in HTML (via constructors id)
         filePanel.setVisible(false); // hide filePanel
-        
+    //    add(commentPanel); // FOR SOME REASON COMMENTPANEL CAUSES CONSTRUCTOR ERROR @ INDEX.CLASS.
 
         homePanel.setOutputMarkupPlaceholderTag(true); // make homePanel modifiable via AJAX
         aboutPanel.setOutputMarkupPlaceholderTag(true); // make aboutPanel modifiable via AJAX
