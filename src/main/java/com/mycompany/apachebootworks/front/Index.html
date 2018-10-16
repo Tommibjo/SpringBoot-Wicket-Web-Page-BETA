@@ -7,12 +7,25 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
     <head>
         <title>Juurivuohi works</title>
+        <wicket:link>
+            <link rel="stylesheet" type="text/css" href="./css/Index.css"/>
+            <link rel="stylesheet" type="text/css" href="./css/DropMenu.css"/>
+            <link rel="stylesheet" type="text/css" href="./css/MainWindow.css"/>
+        </wicket:link>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>  
-        <div wicket:id="click">Click me!</div>
+        <div class="dropdown">
+            <div class="dropbtn">Menu</div>
+            <div class="dropdown-content">
+                <div wicket:id="click">Home</div> <div wicket:id="click2">About</div> <div wicket:id="click3">Files</div>
+            </div>
+        </div>
+        <div class="window">
             <div wicket:id="home">Home panel goes here</div>
             <div wicket:id="about">About panel goes here</div>
+            <div wicket:id="files">Files panel goes here</div>
+        </div>
     </body>
 </html>
