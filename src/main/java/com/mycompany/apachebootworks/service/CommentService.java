@@ -25,6 +25,10 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
     
+    public CommentService(){
+        System.out.println("Commentservice konstruktori laukaistu");
+    }
+    
     public List getAllComments(){
         return this.commentRepository.findAll();
     }

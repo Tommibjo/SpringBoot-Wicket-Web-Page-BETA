@@ -5,17 +5,19 @@
  */
 package com.mycompany.apachebootworks.repository;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 /**
  *
- * Model layer: Suorat tietokantayhteydet, ei busines logiikkaa. 
+ * Model layer: Suorat tietokantayhteydet, ei busines logiikkaa.
+ *
  * @author tommib
  */
 @Entity
-public class Comment extends AbstractPersistable<Long>{
+public class Comment extends AbstractPersistable<Long> implements Serializable { // Comment pojon pitää implementoida serializable rajapinta WICKET:in takia.
 
     @Id
     private Long id;

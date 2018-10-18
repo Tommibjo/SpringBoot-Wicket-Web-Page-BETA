@@ -5,14 +5,14 @@
  */
 package com.mycompany.apachebootworks.front;
 
-import com.mycompany.apachebootworks.repository.CommentRepository;
+import com.mycompany.apachebootworks.repository.Comment;
 import com.mycompany.apachebootworks.service.CommentService;
 import java.util.List;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
  *
@@ -20,18 +20,20 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class CommentPanel extends Panel {
 
-    @Autowired
+    @SpringBean // Wicket ei tunne "@Autowired" annonaatiota. Tämä ajaa saman.
     private CommentService commentService;
 
     public CommentPanel(String id) {
         super(id);
-        List allCommentsList = commentService.getAllComments();
-        ListView allCommentsView = new ListView("commentview", allCommentsList) {
-            @Override
-            protected void populateItem(ListItem li) {
-                li.add(new Label("comment", li.getModel()));
+        this.commentService.addComment("nimi", "kommentti");
+        List allCommentsList = this.commentService.getAllComments(); //Hae CommentServicestä kaikki kommentit
+        add(new ListView<Comment>("commentview", allCommentsList) { // Tehdään uusi ListView<Comment> lista ja lisätään Lista siihen (Wicket ID:llä "commentview"
+            @Override   // "Yliajetaan" ListViewin oma populateItem
+            public void populateItem(final ListItem<Comment> commentObjects){ // Tehdään populateItemillä vielä yksi oma lista.
+                final Comment commentObject = commentObjects.getModelObject(); 
+                commentObjects.add(new Label("name", commentObject.getName()));
+                commentObjects.add(new Label("comment", commentObject.getComment()));
             }
-        };
-        add(allCommentsView);
+        });
     }
 }
