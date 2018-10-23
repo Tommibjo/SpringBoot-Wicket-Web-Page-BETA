@@ -5,6 +5,10 @@
  */
 package com.mycompany.apachebootworks.front;
 
+import com.mycompany.apachebootworks.front.homepanel.HomePanel;
+import com.mycompany.apachebootworks.front.filepanel.FilePanel;
+import com.mycompany.apachebootworks.front.commentpanel.CommentPanel;
+import com.mycompany.apachebootworks.front.aboutpanel.AboutPanel;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -19,24 +23,33 @@ import org.apache.wicket.markup.html.WebPage;
 @WicketHomePage
 public class Index extends WebPage {
 
-    private Component homePanel = new HomePanel("home"); // "home" string within HomePanel constructor is HTML TAG 
-    private Component aboutPanel = new AboutPanel("about"); // "about" string within AboutPAnel constructor is HTML TAG 
-    private Component filePanel = new FilePanel("files"); // "files" string within FilePanel constructor is HTML TAG 
-    private Component commentPanel = new CommentPanel("comment"); // "comment" string withing CommentPanel constructor is HTML tag 
+    private Component homePanel;
+    private Component aboutPanel;
+    private Component filePanel;
+    private final Component commentPanel;
 
     public Index() {
-
-        add(homePanel); // Add homePanel to be used in HTML (via constructors id)
-        add(aboutPanel); // Add aboutPanel to be used in HTML (via constructors id)
-        aboutPanel.setVisible(false); // hide aboutPanel
-        add(filePanel); // add filePanel to be used in HTML (via constructors id)
-        filePanel.setVisible(false); // hide filePanel
-        add(commentPanel);
-
-        homePanel.setOutputMarkupPlaceholderTag(true); // make homePanel modifiable via AJAX
-        aboutPanel.setOutputMarkupPlaceholderTag(true); // make aboutPanel modifiable via AJAX
-        filePanel.setOutputMarkupPlaceholderTag(true); // make filePanel modifiable via AJAX
-
+        
+        // Add panels to main view (String in constructor is HTML wicket:id)
+        this.homePanel = new HomePanel("home"); 
+        this.aboutPanel = new AboutPanel("about"); 
+        this.filePanel = new FilePanel("files");
+        this.commentPanel = new CommentPanel("comment"); 
+        
+        // Hide a few panels
+        this.filePanel.setVisible(false);
+        this.aboutPanel.setVisible(false);
+        
+        // Make panels modifiable by ajax
+        this.homePanel.setOutputMarkupPlaceholderTag(true); 
+        this.aboutPanel.setOutputMarkupPlaceholderTag(true);
+        this.filePanel.setOutputMarkupPlaceholderTag(true); 
+ 
+        // Add panels 
+        add(this.homePanel); 
+        add(this.aboutPanel); 
+        add(this.filePanel); 
+        add(this.commentPanel);
         add(new AjaxLink<Void>("click") { // AJAXLink and its HTML id.
             @Override
             public void onClick(AjaxRequestTarget art) { // upon clicking HTML id, do this.
