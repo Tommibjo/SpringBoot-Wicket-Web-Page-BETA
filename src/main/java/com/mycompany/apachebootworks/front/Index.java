@@ -15,10 +15,8 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 
-/**
- *
- * !!! EHDOTUS: LISÄÄ TÄMÄ WICKET FRONTTI JA TARVITTAVAT KIRJASTOT VANHAAN
- * PROJEKTIIN.
+/*
+ * Main page
  */
 @WicketHomePage
 public class Index extends WebPage {
@@ -50,7 +48,7 @@ public class Index extends WebPage {
         add(this.aboutPanel); 
         add(this.filePanel); 
         add(this.commentPanel);
-        add(new AjaxLink<Void>("click") { // AJAXLink and its HTML id.
+        add(new AjaxLink<Void>("homepage") { // AJAXLink and its HTML id.
             @Override
             public void onClick(AjaxRequestTarget art) { // upon clicking HTML id, do this.
 
@@ -62,7 +60,7 @@ public class Index extends WebPage {
                 art.add(filePanel);
             }
         });
-        add(new AjaxLink<Void>("click2") {
+        add(new AjaxLink<Void>("aboutpage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
 
@@ -74,7 +72,7 @@ public class Index extends WebPage {
                 art.add(filePanel);
             }
         });
-        add(new AjaxLink<Void>("click3") {
+        add(new AjaxLink<Void>("filespage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
 

@@ -9,11 +9,16 @@ import com.mycompany.apachebootworks.front.commentform.CommentForm;
 import com.mycompany.apachebootworks.repository.Comment;
 import com.mycompany.apachebootworks.service.CommentService;
 import java.util.List;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.TextArea;
+import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
@@ -22,25 +27,54 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
  */
 public class CommentPanel extends Panel {
 
-    @SpringBean // Wicket ei tunne "@Autowired" annonaatiota. Tämä ajaa saman.
+    @SpringBean
     private CommentService commentService;
+    @SpringBean
+    private CommentPOJO commentpojo;
+
     private List commentList;
     private Form commentForm;
+    private TextArea<String> comment;
+    private TextField<String> name;
 
     public CommentPanel(String id) {
         super(id);
-        this.commentService.addComment("nimi", "kommentti");
-        this.commentList = this.commentService.getAllComments(); //Hae CommentServicestä kaikki kommentit
-        this.commentForm = new CommentForm("commentinput");
 
+        //===========START========
+        // Comment form
+        //========================
+        this.comment = new TextArea<String>("commentfield", new PropertyModel<>(commentpojo, "comment"));
+        this.name = new TextField<String>("namefield", new PropertyModel<>(commentpojo, "name"));
+        this.commentForm = new CommentForm("commentform");
+        this.commentForm.setOutputMarkupId(true);
+        this.commentForm.add(new AjaxSubmitLink("addcomment") {
+            @Override
+            public void onSubmit(AjaxRequestTarget target) {
+                System.out.println(commentpojo.getName() + ":" + commentpojo.getComment());
+                commentService.addComment(commentpojo.getName(), commentpojo.getComment());
+            }
+        });
+        this.commentForm.add(this.comment);
+        this.commentForm.add(this.name);
         add(this.commentForm);
-        add(new ListView<Comment>("commentview", commentList) { // Tehdään uusi ListView<Comment> lista ja lisätään Lista siihen (Wicket ID:llä "commentview"
-            @Override   // "Yliajetaan" ListViewin oma populateItem
-            public void populateItem(final ListItem<Comment> item) { // Tehdään populateItemillä vielä yksi oma lista.
+        //===========END==========
+        // Comment form
+        //========================
+
+        //===========START========
+        // Comment list
+        //========================
+        this.commentList = this.commentService.getAllComments();
+        add(new ListView<Comment>("commentview", commentList) {
+            @Override
+            public void populateItem(final ListItem<Comment> item) {
                 final Comment comment = item.getModelObject();
                 item.add(new Label("name", comment.getName()));
                 item.add(new Label("comment", comment.getComment()));
             }
         });
+        //===========END==========
+        // Comment list
+        //========================
     }
 }

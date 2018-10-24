@@ -6,6 +6,7 @@
 package com.mycompany.apachebootworks.front.commentform;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.form.AjaxFormSubmitBehavior;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
@@ -13,13 +14,8 @@ import org.apache.wicket.markup.html.form.Form;
  * @author tommib
  */
 public class CommentForm extends Form {
-    
+
     public CommentForm(String id) {
         super(id);
     }
-    
-    protected void onSubmit(AjaxRequestTarget target){
-        System.out.println("Clicked!");
-    }
-    
 }
