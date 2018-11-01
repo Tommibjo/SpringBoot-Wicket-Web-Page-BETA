@@ -8,10 +8,10 @@ package com.mycompany.apachebootworks.front.commentpanel;
 import org.springframework.stereotype.Component;
 
 /**
+ * BRG
  *
  * @author tommib
  */
-
 // POJO for CommentPanel
 @Component
 public class CommentPOJO {
@@ -38,5 +38,4 @@ public class CommentPOJO {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
 }

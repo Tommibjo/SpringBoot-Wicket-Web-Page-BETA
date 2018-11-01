@@ -69,4 +69,9 @@ public class Comment extends AbstractPersistable<Long> implements Serializable {
         this.postTime = postTime;
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" + "id=" + id + ", name=" + name + ", comment=" + comment + ", postTime=" + postTime + '}';
+    }
+
 }

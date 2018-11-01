@@ -11,17 +11,21 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <wicket:panel>
-            <form wicket:id="commentform">
-                <input wicket:id="namefield" type="text"/>
-                <textarea wicket:id="commentfield" type="text" rows="6" cols="40"/>
-                <br/>
-                <input wicket:id="addcomment" type="submit" value="comment"/>
-            </form>
-            <span wicket:id="commentview">
-                <span wicket:id="name">sinqular name</span>
-                <span wicket:id="comment">sinqular comment</span>
-            </span>
+        <wicket:panel>  
+            <div class="comments">
+                <form wicket:id="commentform">
+                    <input wicket:id="namefield" type="text"/>
+                    <textarea wicket:id="commentfield" type="text" rows="6" cols="40"/>
+                    <br/>
+                    <input wicket:id="addcomment" type="submit" value="comment"/>
+                </form>
+                <table wicket:id="theContainer">
+                    <tr wicket:id="commentview">
+                        <td><span wicket:id="name">sinqular name</span></td>
+                        <td><span wicket:id="comment">sinqular comment</span></td>
+                    </tr>
+                </table>
+            </div>
         </wicket:panel>
     </body>
 </html>

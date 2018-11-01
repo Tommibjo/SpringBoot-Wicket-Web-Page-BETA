@@ -5,12 +5,11 @@
  */
 package com.mycompany.apachebootworks.front.commentpanel;
 
-import com.mycompany.apachebootworks.front.commentform.CommentForm;
 import com.mycompany.apachebootworks.repository.Comment;
 import com.mycompany.apachebootworks.service.CommentService;
-import java.util.List;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -18,63 +17,77 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 /**
+ * Comment area panel
  *
  * @author tommib
  */
 public class CommentPanel extends Panel {
 
+    // "@Autowiring"
     @SpringBean
     private CommentService commentService;
     @SpringBean
     private CommentPOJO commentpojo;
 
-    private List commentList;
+    // Liittyy kommenttien printtaukseen
+    private IModel commentList;
+
+    // Liittyy kommenttien rekisteröintiin
     private Form commentForm;
     private TextArea<String> comment;
     private TextField<String> name;
 
     public CommentPanel(String id) {
         super(id);
-
-        //===========START========
-        // Comment form
-        //========================
-        this.comment = new TextArea<String>("commentfield", new PropertyModel<>(commentpojo, "comment"));
-        this.name = new TextField<String>("namefield", new PropertyModel<>(commentpojo, "name"));
-        this.commentForm = new CommentForm("commentform");
-        this.commentForm.setOutputMarkupId(true);
-        this.commentForm.add(new AjaxSubmitLink("addcomment") {
+        // Service layerin kommentit on ladattava LoadableDetachableModel:in kautta, jotta ovat AJAX päivitettävissä.
+        this.commentList = new LoadableDetachableModel() {
             @Override
-            public void onSubmit(AjaxRequestTarget target) {
-                System.out.println(commentpojo.getName() + ":" + commentpojo.getComment());
-                commentService.addComment(commentpojo.getName(), commentpojo.getComment());
+            protected Object load() {
+                return commentService.getAllComments();
             }
-        });
-        this.commentForm.add(this.comment);
-        this.commentForm.add(this.name);
-        add(this.commentForm);
-        //===========END==========
-        // Comment form
-        //========================
+        };
+        // Liittyy kommenttien rekisteröintiin
+        this.comment = new TextArea<>("commentfield", new PropertyModel<>(commentpojo, "comment"));
+        this.name = new TextField<>("namefield", new PropertyModel<>(commentpojo, "name"));
 
-        //===========START========
-        // Comment list
-        //========================
-        this.commentList = this.commentService.getAllComments();
-        add(new ListView<Comment>("commentview", commentList) {
+        /*
+         * Kommenttien printtaus
+         */
+        // Luodaan WebMarkUpContainer olio 
+        WebMarkupContainer listContainer = new WebMarkupContainer("theContainer");
+        // Lisätään WebMarkUpContaineriin Listview ja Listviewiin this.commentListin tavarat.
+        listContainer.add(new ListView<Comment>("commentview", this.commentList) { 
             @Override
             public void populateItem(final ListItem<Comment> item) {
                 final Comment comment = item.getModelObject();
                 item.add(new Label("name", comment.getName()));
                 item.add(new Label("comment", comment.getComment()));
+                System.out.println(comment.toString());
             }
         });
-        //===========END==========
-        // Comment list
-        //========================
+        listContainer.setOutputMarkupId(true); // Tehdään listan omaavasta WebMarkupContainerista AJAX muokattava
+        add(listContainer); // Lisätään Listan omaava WebMarkupContainer CommentPanel komponenttiin
+
+        /*
+         * Kommenttien rekisteröinti
+         */
+        this.commentForm = new Form("commentform");
+        this.commentForm.add(new AjaxSubmitLink("addcomment") {
+            @Override
+            public void onSubmit(AjaxRequestTarget target) {
+                commentService.addComment(commentpojo.getName(), commentpojo.getComment());
+                target.add(listContainer);
+            }
+
+        });
+        this.commentForm.add(this.comment);
+        this.commentForm.add(this.name);
+        add(this.commentForm);
     }
 }

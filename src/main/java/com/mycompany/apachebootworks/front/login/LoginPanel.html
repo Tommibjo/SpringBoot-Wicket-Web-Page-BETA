@@ -11,10 +11,13 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <wicket:panel>
-            <h1>Files</h1>
-            <br/><br>
-            <div>Download my CV here.</div>
-        </wicket:panel>
+            <h1>Login</h1>
+            <br/><br/>
+            <div>Login to access files</div>
+            <form wicket:id="login">
+                <input type="text" wicket:id="nimi"/>
+                <input type="password" wicket:id="salasana"/>
+                <input type="submit"/>
+            </form>
     </body>
 </html>
