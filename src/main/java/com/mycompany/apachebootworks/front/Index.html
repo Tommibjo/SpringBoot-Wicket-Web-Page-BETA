@@ -23,12 +23,14 @@ and open the template in the editor.
                 <div wicket:id="homepage">Home</div> <div wicket:id="aboutpage">About</div> <div wicket:id="filespage">Files</div>
             </div>
         </div>
-        <div class="window">
-            <div wicket:id="home">Home panel goes here</div>
-            <div wicket:id="about">About panel goes here</div>
-            <div wicket:id="files">Files panel goes here</div>
-            <wicket:child/>
-        </div>
+        <div wicket:id="panels">
+            <div class="window">
+                <div wicket:id="home">Home panel goes here</div>
+                <div wicket:id="about">About panel goes here</div>
+                <div wicket:id="files">Files panel goes here</div>
+                <wicket:child/>
+            </div>
             <div wicket:id="comment">Comment panel goes here</div>  
+        </div>
     </body>
 </html>

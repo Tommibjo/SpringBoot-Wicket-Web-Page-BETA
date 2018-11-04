@@ -20,15 +20,15 @@ import org.apache.wicket.markup.html.panel.Panel;
 public class FilesPanel extends Panel {
     
     // Tämän ansiosta wicket heittää heti suoraan @WicketSignInPage annotaatiolla merkitylle sivulle
-    @Override
+   /*    @Override
     protected void onConfigure(){
-        super.onConfigure();
+     super.onConfigure();
         AuthenticatedWebApplication app = (AuthenticatedWebApplication)Application.get();
         if(!AuthenticatedWebSession.get().isSignedIn()){
             app.restartResponseAtSignInPage();
         }
-        
-    }
+  
+    }  */    
 
     public FilesPanel(String id) {
         super(id);
