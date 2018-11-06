@@ -10,17 +10,16 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
-//import org.wicketstuff.annotation.mount.MountPath;
 
 /**
  *
  * @author tommib
  */
-//@AuthorizeInstantiation("ADMIN")
+@AuthorizeInstantiation("ADMIN")
 public class FilesPanel extends Panel {
     
     // Tämän ansiosta wicket heittää heti suoraan @WicketSignInPage annotaatiolla merkitylle sivulle
-   /*    @Override
+       @Override
     protected void onConfigure(){
      super.onConfigure();
         AuthenticatedWebApplication app = (AuthenticatedWebApplication)Application.get();
@@ -28,7 +27,7 @@ public class FilesPanel extends Panel {
             app.restartResponseAtSignInPage();
         }
   
-    }  */    
+    }  
 
     public FilesPanel(String id) {
         super(id);

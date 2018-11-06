@@ -20,40 +20,39 @@ import org.apache.wicket.markup.html.WebPage;
  */
 @WicketHomePage
 public class Index extends WebPage {
-
+    
+    private HomePanel homePanel;
+    private CommentPanel commentPanel;
+    private AboutPanel aboutPanel;
+  //  private FilesPanel filesPanel;
+    
     private WebMarkupContainer panelContainer;
 
     public Index() {
-        this.panelContainer = new WebMarkupContainer("panels");
+        this.panelContainer = new WebMarkupContainer("panelContainer");
+        this.homePanel = new HomePanel("panel");
+        this.commentPanel = new CommentPanel("comment");
+        this.aboutPanel = new AboutPanel("panel");
+    //    this.filesPanel = new FilesPanel("panel");
         
-        this.panelContainer.add(new HomePanel("home").setOutputMarkupId(true));
-        this.panelContainer.add(new CommentPanel("comment").setOutputMarkupId(true));
-        this.panelContainer.add(new AboutPanel("about").setOutputMarkupId(true).setVisible(false));
-        this.panelContainer.add(new FilesPanel("files").setOutputMarkupId(true).setVisible(false));
-
-        this.panelContainer.setOutputMarkupId(true);
-        add(this.panelContainer);
+  
+        this.panelContainer.add(this.homePanel);
+        this.panelContainer.add(this.commentPanel);
+        add(this.panelContainer.setOutputMarkupId(true));
 
         add(new AjaxLink<Void>("homepage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-
-                art.add(panelContainer.get("home").setVisible(true));
-                art.add(panelContainer.get("comment").setVisible(true));
-                art.add(panelContainer.get("about").setVisible(false));
-                art.add(panelContainer.get("files").setVisible(false));
-
+                System.out.println("Homepage aktivoitu");
+                art.add(panelContainer.replace(homePanel)); 
             }
         });
 
         add(new AjaxLink<Void>("aboutpage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-
-                art.add(panelContainer.get("home").setVisible(false));
-                art.add(panelContainer.get("comment").setVisible(false));
-                art.add(panelContainer.get("about").setVisible(true));
-                art.add(panelContainer.get("files").setVisible(false));
+                System.out.println("Aboutpage aktivoitu");
+                art.add(panelContainer.replace(aboutPanel)); 
 
             }
         });
@@ -61,11 +60,9 @@ public class Index extends WebPage {
         add(new AjaxLink<Void>("filespage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-
-                art.add(panelContainer.get("home").setVisible(false));
-                art.add(panelContainer.get("comment").setVisible(false));
-                art.add(panelContainer.get("about").setVisible(false));
-                art.add(panelContainer.get("files").setVisible(true));
+                FilesPanel filesPanel = new FilesPanel("panel");
+                System.out.println("Filespage aktivoitu");
+                art.add(panelContainer.replace(filesPanel));
             }
         });
     }
