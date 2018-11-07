@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.apachebootworks.front.login;
+package com.mycompany.apachebootworks.front.loginpage;
 
 import java.io.Serializable;
 import org.springframework.stereotype.Component;

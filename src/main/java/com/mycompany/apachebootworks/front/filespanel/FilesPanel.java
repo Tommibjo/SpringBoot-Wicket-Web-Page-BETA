@@ -5,9 +5,10 @@
  */
 package com.mycompany.apachebootworks.front.filespanel;
 
+import com.giffing.wicket.spring.boot.starter.app.WicketBootSecuredWebApplication;
+import com.mycompany.apachebootworks.security.AuthenticatedApplication;
+import com.mycompany.apachebootworks.security.AuthenticatedSession;
 import org.apache.wicket.Application;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -15,19 +16,18 @@ import org.apache.wicket.markup.html.panel.Panel;
  *
  * @author tommib
  */
-@AuthorizeInstantiation("ADMIN")
+@AuthorizeInstantiation("SIGssNED_IN")
 public class FilesPanel extends Panel {
-    
-    // Tämän ansiosta wicket heittää heti suoraan @WicketSignInPage annotaatiolla merkitylle sivulle
-       @Override
-    protected void onConfigure(){
-     super.onConfigure();
-        AuthenticatedWebApplication app = (AuthenticatedWebApplication)Application.get();
-        if(!AuthenticatedWebSession.get().isSignedIn()){
+
+    @Override
+    protected void onConfigure() {
+        super.onConfigure();
+        System.out.println("Onconfigure!");
+        WicketBootSecuredWebApplication app = (WicketBootSecuredWebApplication) Application.get();
+        if (!AuthenticatedSession.get().isSignedIn()) {
             app.restartResponseAtSignInPage();
         }
-  
-    }  
+    }
 
     public FilesPanel(String id) {
         super(id);
