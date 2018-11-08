@@ -13,22 +13,28 @@ import org.apache.wicket.request.Request;
  *
  * @author tommib
  */
-
 public class AuthenticatedSession extends AuthenticatedWebSession {
 
     public AuthenticatedSession(Request request) {
         super(request);
-    } 
-    
+    }
+
     @Override
     protected boolean authenticate(String username, String password) {
-        return false;
+        boolean Auth = false;
+        if(username.equals("wicket") && password.equals("wicket")){
+            Auth = true;
+        }
+        System.out.println("Auth: " + Auth);
+        return Auth;
     }
-    
+
     @Override
     public Roles getRoles() {
         Roles resultRoles = new Roles();
-        resultRoles.add("SIGNED_IN");
+        if (isSignedIn()) {
+            resultRoles.add("SIGNED_IN");
+        }
         return resultRoles;
     }
 }

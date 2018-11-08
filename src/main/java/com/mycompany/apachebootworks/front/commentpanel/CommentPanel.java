@@ -62,7 +62,7 @@ public class CommentPanel extends Panel {
         // Luodaan WebMarkUpContainer olio 
         WebMarkupContainer listContainer = new WebMarkupContainer("theContainer");
         // Lisätään WebMarkUpContaineriin Listview ja Listviewiin this.commentListin tavarat.
-        listContainer.add(new ListView<Comment>("commentview", this.commentList) { 
+        listContainer.add(new ListView<Comment>("commentview", this.commentList) {
             @Override
             public void populateItem(final ListItem<Comment> item) {
                 final Comment comment = item.getModelObject();

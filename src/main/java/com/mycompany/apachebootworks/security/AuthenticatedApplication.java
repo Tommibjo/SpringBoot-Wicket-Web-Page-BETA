@@ -7,6 +7,7 @@ package com.mycompany.apachebootworks.security;
 
 import com.giffing.wicket.spring.boot.context.security.AuthenticatedWebSessionConfig;
 import com.giffing.wicket.spring.boot.starter.app.WicketBootSecuredWebApplication;
+import com.mycompany.apachebootworks.front.loginpage.LoginPage;
 import org.apache.wicket.authroles.authentication.AbstractAuthenticatedWebSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AuthenticatedApplication extends WicketBootSecuredWebApplication implements AuthenticatedWebSessionConfig{
+    
+    @Override
+    public void init(){
+        super.init();
+        getApplicationSettings().setAccessDeniedPage(LoginPage.class);
+    }
+    
     @Bean
     @Override
     public Class<? extends AbstractAuthenticatedWebSession> getAuthenticatedWebSessionClass() {

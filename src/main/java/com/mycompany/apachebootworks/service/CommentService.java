@@ -15,28 +15,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Service: Käyttää model layeria. (Sisältää business logiikan)
- * controlview kansion .java tiedostot käyttävät tätä serviseä.
+ * Service: Käyttää model layeria. (Sisältää business logiikan) controlview
+ * kansion .java tiedostot käyttävät tätä serviseä.
+ *
  * @author tommib
  */
 @Service
 public class CommentService {
-    
+
     @Autowired
     private CommentRepository commentRepository;
-    
-    public CommentService(){
+
+    public CommentService() {
         System.out.println("Commentservice konstruktori laukaistu");
     }
-    
-    public List getAllComments(){
+
+    public List getAllComments() {
         return this.commentRepository.findAll();
     }
-    
-    public void addComment(String name, String comment){
+
+    public void addComment(String name, String comment) {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-        Date date = new Date();        
-        commentRepository.saveAndFlush(new Comment(name, comment, dateFormat.format(date)));
-    }   
-    
+        Date date = new Date();
+        if (name == null) {
+            commentRepository.saveAndFlush(new Comment("Anonymous Internet user", comment, dateFormat.format(date)));
+        } else {
+            commentRepository.saveAndFlush(new Comment(name, comment, dateFormat.format(date)));
+        }
+    }
+
 }

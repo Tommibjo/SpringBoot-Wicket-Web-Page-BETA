@@ -6,6 +6,8 @@
 package com.mycompany.apachebootworks.front.loginpage;
 
 import com.giffing.wicket.spring.boot.context.scan.WicketSignInPage;
+import com.mycompany.apachebootworks.front.Index;
+import com.mycompany.apachebootworks.security.AuthenticatedSession;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -36,10 +38,14 @@ public class LoginPage extends WebPage {
         this.loginForm = new Form("login"){
           @Override
           public void onSubmit(){
-              System.out.println("Submit overide!: " + userpojo.getUsername() + " : " + userpojo.getPassword());
+              System.out.println("onSubmit(): " + userpojo.getUsername() + " : " + userpojo.getPassword());
+              if(AuthenticatedSession.get().signIn(userpojo.getUsername(), userpojo.getPassword()) == true){
+                  setResponsePage(Index.class);
+              }
           }
         };
-        add(this.username);
-        add(this.password);
+        this.loginForm.add(this.username);
+        this.loginForm.add(this.password);
+        add(this.loginForm);
     }
 }
