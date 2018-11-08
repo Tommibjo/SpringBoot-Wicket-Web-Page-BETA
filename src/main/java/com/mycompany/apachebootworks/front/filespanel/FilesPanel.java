@@ -17,5 +17,6 @@ public class FilesPanel extends Panel {
 
     public FilesPanel(String id) {
         super(id);
+        System.out.println("Filespanel constructor");
     }
 }

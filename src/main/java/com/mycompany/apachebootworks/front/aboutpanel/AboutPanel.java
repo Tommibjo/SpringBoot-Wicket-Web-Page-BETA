@@ -25,6 +25,7 @@ public class AboutPanel extends Panel {
 
     public AboutPanel(String id) {
         super(id);
+        System.out.println("Aboutpanel constructor");
         this.id = new Label("id", this.getId());
         this.feedback = new Label("fbmessage", this.getFeedbackMessages());
         this.locale = new Label("locale", this.getLocale());

@@ -11,9 +11,9 @@ and open the template in the editor.
 .comments{
     font-family: Open Sans; 
     width: 405px;
-    margin: 10px;
+    margin: 400px;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: -25px;
     padding: 25px;
     background-color: rgba(88 ,139 ,174 , 0.5);
 }

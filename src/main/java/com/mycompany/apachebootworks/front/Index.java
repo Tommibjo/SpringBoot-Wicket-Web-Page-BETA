@@ -6,7 +6,7 @@
 package com.mycompany.apachebootworks.front;
 
 import com.mycompany.apachebootworks.front.homepanel.HomePanel;
-import com.mycompany.apachebootworks.front.commentpanel.CommentPanel;
+//import com.mycompany.apachebootworks.front.commentpanel.CommentPanel;
 import com.mycompany.apachebootworks.front.aboutpanel.AboutPanel;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import com.mycompany.apachebootworks.front.filespanel.FilesPanel;
@@ -22,7 +22,7 @@ import org.apache.wicket.markup.html.WebPage;
 public class Index extends WebPage {
     
     private HomePanel homePanel;
-    private CommentPanel commentPanel;
+ //   private CommentPanel commentPanel;
     private AboutPanel aboutPanel;
   //  private FilesPanel filesPanel;
     
@@ -31,19 +31,17 @@ public class Index extends WebPage {
     public Index() {
         this.panelContainer = new WebMarkupContainer("panelContainer");
         this.homePanel = new HomePanel("panel");
-        this.commentPanel = new CommentPanel("comment");
         this.aboutPanel = new AboutPanel("panel");
     //    this.filesPanel = new FilesPanel("panel");
         
   
         this.panelContainer.add(this.homePanel);
-        this.panelContainer.add(this.commentPanel);
+   //     this.panelContainer.add(this.commentPanel);
         add(this.panelContainer.setOutputMarkupId(true));
 
         add(new AjaxLink<Void>("homepage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-                System.out.println("Homepage aktivoitu");
                 art.add(panelContainer.replace(homePanel)); 
             }
         });
@@ -51,7 +49,6 @@ public class Index extends WebPage {
         add(new AjaxLink<Void>("aboutpage") {
             @Override
             public void onClick(AjaxRequestTarget art) {
-                System.out.println("Aboutpage aktivoitu");
                 art.add(panelContainer.replace(aboutPanel)); 
 
             }
@@ -61,7 +58,6 @@ public class Index extends WebPage {
             @Override
             public void onClick(AjaxRequestTarget art) {
                 FilesPanel filesPanel = new FilesPanel("panel");
-                System.out.println("Filespage aktivoitu");
                 art.add(panelContainer.replace(filesPanel));
             }
         });
