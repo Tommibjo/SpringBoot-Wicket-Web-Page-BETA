@@ -4,18 +4,18 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 18.10.2018, 13:59:02
+    Created on : 9.11.2018, 15:14:13
     Author     : tommib
 */
 
-.comment{
-    border-top: 3px dotted;
-    border-width: thin;
-    font-family: Open Sans; 
-    font-size: 15px;
-    background-color: rgba(88 ,139 ,174 , 0.5);  
-    width: 405px;
-    padding: 25px;
+body {
+    background-image: url("login.jpg");
+}
+.loginForm{
     margin-right: auto;
     margin-left: auto;
+    font-family: Open Sans; 
+}
+.picture{
+    background: transparent url(flake.png);
 }

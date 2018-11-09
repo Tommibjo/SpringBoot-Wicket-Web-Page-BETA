@@ -35,34 +35,30 @@ public class CommentPanel extends Panel {
     @SpringBean
     private CommentPOJO commentpojo;
 
-    // Liittyy kommenttien printtaukseen
     private IModel commentList;
-
-    // Liittyy kommenttien rekisteröintiin
     private Form commentForm;
     private TextArea<String> comment;
     private TextField<String> name;
+    private WebMarkupContainer listContainer;
 
     public CommentPanel(String id) {
         super(id);
-        // Service layerin kommentit on ladattava LoadableDetachableModel:in kautta, jotta ovat AJAX päivitettävissä.
+        
+        /*
+         *Kommenttien listaus
+         */
         this.commentList = new LoadableDetachableModel() {
             @Override
             protected Object load() {
                 return commentService.getAllComments();
             }
         };
-        // Liittyy kommenttien rekisteröintiin
         this.comment = new TextArea<>("commentfield", new PropertyModel<>(commentpojo, "comment"));
         this.name = new TextField<>("namefield", new PropertyModel<>(commentpojo, "name"));
-
-        /*
-         * Kommenttien printtaus
-         */
-        // Luodaan WebMarkUpContainer olio 
-        WebMarkupContainer listContainer = new WebMarkupContainer("theContainer");
-        // Lisätään WebMarkUpContaineriin Listview ja Listviewiin this.commentListin tavarat.
-        listContainer.add(new ListView<Comment>("commentview", this.commentList) {
+        this.comment.setOutputMarkupId(true);
+        this.name.setOutputMarkupId(true);
+        this.listContainer = new WebMarkupContainer("theContainer");
+        this.listContainer.add(new ListView<Comment>("commentview", this.commentList) {
             @Override
             public void populateItem(final ListItem<Comment> item) {
                 final Comment comment = item.getModelObject();
@@ -71,8 +67,8 @@ public class CommentPanel extends Panel {
                 System.out.println(comment.toString());
             }
         });
-        listContainer.setOutputMarkupId(true); // Tehdään listan omaavasta WebMarkupContainerista AJAX muokattava
-        add(listContainer); // Lisätään Listan omaava WebMarkupContainer CommentPanel komponenttiin
+        this.listContainer.setOutputMarkupId(true); 
+        add(this.listContainer);
 
         /*
          * Kommenttien rekisteröinti
@@ -83,6 +79,12 @@ public class CommentPanel extends Panel {
             public void onSubmit(AjaxRequestTarget target) {
                 commentService.addComment(commentpojo.getName(), commentpojo.getComment());
                 target.add(listContainer);
+                // Tyhjentää tekstikentän
+                comment.setModelObject(null);
+                target.add(comment);
+                // Tyhjentää nimikentän
+                name.setModelObject(null);
+                target.add(name);
             }
 
         });

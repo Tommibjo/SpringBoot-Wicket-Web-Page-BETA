@@ -6,18 +6,24 @@ and open the template in the editor.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
     <head>
-        <title>TODO supply a title</title>
+        <title>Login</title>
+        <wicket:link>
+            <link rel="stylesheet" type="text/css" href="../css/LoginPage.css"/>
+        </wicket:link>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-            <h1>Login</h1>
-            <br/><br/>
-            <div>Login to access files</div>
-            <form wicket:id="login">
-                <input type="text" wicket:id="nimi"/>
-                <input type="password" wicket:id="salasana"/>
-                <input type="submit"/>
-            </form>
+        <div class="loginForm">
+            <div class="picture"/>
+        <h2>Login</h2>
+        <br/><br/>
+        <div>Login to access files</div>
+        <form wicket:id="login">
+            <input type="text" wicket:id="nimi"/>
+            <input type="password" wicket:id="salasana"/>
+            <input type="submit"/>
+        </form>
+        </div>
     </body>
 </html>
