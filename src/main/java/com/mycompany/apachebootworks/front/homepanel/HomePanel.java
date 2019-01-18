@@ -5,10 +5,6 @@
  */
 package com.mycompany.apachebootworks.front.homepanel;
 
-import com.giffing.wicket.spring.boot.starter.app.WicketBootSecuredWebApplication;
-import com.mycompany.apachebootworks.front.commentpanel.CommentPanel;
-import com.mycompany.apachebootworks.security.AuthenticatedSession;
-import org.apache.wicket.Application;
 import org.apache.wicket.markup.html.panel.Panel;
 
 /**
@@ -17,11 +13,8 @@ import org.apache.wicket.markup.html.panel.Panel;
  */
 public class HomePanel extends Panel {
 
-    private CommentPanel commentPanel;
     public HomePanel(String id) {
         super(id);
-        this.commentPanel = new CommentPanel("comment");
         System.out.println("Homepanel constructor");
-        add(this.commentPanel);        
     }
 }

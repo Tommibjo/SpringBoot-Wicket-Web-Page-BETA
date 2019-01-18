@@ -30,17 +30,21 @@ public class CommentService {
         System.out.println("Commentservice konstruktori laukaistu");
     }
 
-    public List getAllComments() {
-        return this.commentRepository.findAll();
+    public List<Comment> getAllComments() {
+        // PELKKÄ ALLA OLEVAN KÄYTTÖ AIHEUTTAA: java.sql.SQLSyntaxErrorException: Unknown column 'comment0_.post_time' in 'field list'
+        // this.commentRepository.findAll()
+        System.out.println("getAllComments kommentit noudettu");
+        
+        return (List<Comment>) this.commentRepository.findAll();
     }
 
     public void addComment(String name, String comment) {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         Date date = new Date();
         if (name == null) {
-            commentRepository.saveAndFlush(new Comment("Anonymous Internet user", comment, dateFormat.format(date)));
+            commentRepository.save(new Comment("Anonymous Internet user", comment, dateFormat.format(date)));
         } else {
-            commentRepository.saveAndFlush(new Comment(name, comment, dateFormat.format(date)));
+            commentRepository.save(new Comment(name, comment, dateFormat.format(date)));
         }
     }
 

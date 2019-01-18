@@ -7,8 +7,11 @@ package com.mycompany.apachebootworks.repository;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -17,31 +20,33 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * @author tommib
  */
 @Entity
-public class Comment extends AbstractPersistable<Long> implements Serializable { // Comment pojon pitää implementoida serializable rajapinta WICKET:in takia.
+@Component
+@Table(name = "messages")
+public class Comment implements Serializable { 
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @javax.persistence.Id
+    private Integer id;
     private String name;
-    private String comment;
+    private String message;
     private String postTime;
 
     public Comment() {
 
     }
 
-    public Comment(String name, String comment, String postTime) {
+    public Comment(String name, String message, String postTime) {
         this.name = name;
-        this.comment = comment;
+        this.message = message;
         this.postTime = postTime;
     }
 
-    @Override
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    @Override
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,12 +58,12 @@ public class Comment extends AbstractPersistable<Long> implements Serializable {
         this.name = name;
     }
 
-    public String getComment() {
-        return comment;
+    public String getMessage() {
+        return message;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getPostTime() {
@@ -71,7 +76,7 @@ public class Comment extends AbstractPersistable<Long> implements Serializable {
 
     @Override
     public String toString() {
-        return "Comment{" + "id=" + id + ", name=" + name + ", comment=" + comment + ", postTime=" + postTime + '}';
+        return "Comment{" + "id=" + id + ", name=" + name + ", comment=" + message + ", postTime=" + postTime + '}';
     }
 
 }

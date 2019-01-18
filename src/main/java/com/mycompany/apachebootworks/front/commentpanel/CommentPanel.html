@@ -15,16 +15,19 @@ and open the template in the editor.
             <div class="comments">
                 <form wicket:id="commentform">
                     <b>Username</b> (Optional)<br/>
-                    <input wicket:id="namefield" type="text"/><br/>
+                    <input class="comment-input" wicket:id="namefield" type="text"/><br/>
                     <b>Comment</b><br/>
-                    <textarea wicket:id="commentfield" type="text" rows="6" cols="40"/>
+                    <textarea class="comment-input" wicket:id="commentfield" type="text" rows="6" cols="40"/>
                     <br/>
-                    <input wicket:id="addcomment" type="submit" value="comment"/>
+                    <input class="comment-button" wicket:id="addcomment" type="submit" value="comment"/>
                 </form>
                 <table wicket:id="theContainer">
                     <tr wicket:id="commentview">
                         <td><span wicket:id="name">sinqular name</span></td>
-                        <td><span wicket:id="comment">sinqular comment</span></td>
+                        <td><span wicket:id="comment">sinqular comment</span></td> 
+                        <div class="time_left">
+                            <td><span wicket:id="time">time</span></td>
+                        </div>
                     </tr>
                 </table>
             </div>

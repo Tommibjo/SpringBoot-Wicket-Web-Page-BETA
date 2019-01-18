@@ -4,14 +4,16 @@
     <groupId>com.mycompany</groupId>
     <artifactId>ApacheBootWorks</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
+    
     <!-- Inherit defaults from Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.6.RELEASE</version>
+        <version>2.1.2.RELEASE</version>
     </parent>
-    <!-- Add typical dependencies for a web application -->
+    
+    <!-- SPRING BOOT & SPRING FRAMEWORK -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -32,21 +34,40 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency> 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <type>jar</type>
         </dependency>
+        
+        <!-- MYSQL CONNECTOR -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency> 
+
+        <!-- WICKET (Onkohan tarpeellinen?) -->
         <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
             <version>8.0.0</version>
             <type>jar</type>
         </dependency>
+
+
+        <!-- Tarvitaan .WAR filua varten-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <type>jar</type>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope> 
         </dependency>
+                
     </dependencies>
+    
     <build>
         <resources>
             <resource>
@@ -80,6 +101,7 @@
                 </excludes>
             </testResource>
         </testResources>
+        <finalName>/</finalName>
     </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

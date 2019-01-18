@@ -8,14 +8,75 @@ and open the template in the editor.
     Author     : tommib
 */
 
+/*
 body {
-    background-image: url("login.jpg");
-}
-.loginForm{
-    margin-right: auto;
-    margin-left: auto;
+  background: #2d343d;
+}*/
+
+
+.login{
     font-family: Open Sans; 
+    margin: 20px auto;
+    width: 300px;
+    padding: 30px 25px;
+    background-color: rgba(88 ,139 ,174 , 0.5);
 }
-.picture{
-    background: transparent url(flake.png);
+
+h1.login-title {
+    margin: -28px -25px 25px;
+    padding: 15px 25px;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #ADADAD;
+    text-align:center;
+    background: #f7f7f7;
+
 }
+
+.login-input {
+    width: 285px;
+    height: 22px;
+    margin-bottom: 25px;
+    padding-left:10px;
+    font-size: 15px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.login-input:focus {
+    border-color:#6e8095;
+    outline: none;
+}
+.login-button {
+    width: 30%;
+    height: 25px;
+    padding: 0;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    margin-left: 100px;
+    color: #fff;
+    text-align: center;
+    background: #f0776c;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer; 
+    outline:0;
+}
+.back {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.backbtn {
+    background-color: rgba(88 ,139 ,174 , 0.5);
+    color: white;
+    font-family: Open Sans; 
+    padding: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    /* POSITION FIXED ??*/
+}
+
+.back:hover .backbtn {background-color: #4b90c3;}
+

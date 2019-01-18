@@ -11,10 +11,46 @@ and open the template in the editor.
 .window{
     font-family: Open Sans; 
     width: 405px;
-    height: 500px;
+    height: 400px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 150px;
+    margin-top: 50px;
     padding: 25px;
     background-color: rgba(88 ,139 ,174 , 0.5);
+}
+h1.window-title {
+    margin: -28px -25px 25px;
+    padding: 15px 25px;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #ADADAD;
+    text-align:center;
+    background: #f7f7f7;
+}
+img {
+    max-width: 15%;
+    border-radius: 4px;
+    padding: 16px;
+}
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(249, 249, 249, 0.7);
+}
+
+.tooltip{
+    position:relative;
+    display: inline;
+}
+.tooltip[data-title]:hover:after {
+    font-family: Open Sans; 
+    font-size: 15px;
+    content: attr(data-title);
+    padding: 4px 8px;
+    color: #fff;
+    position: absolute;
+    left: 9px;
+    top: 110%;
+    white-space: nowrap;  
+    border-radius: 5px;  
+    background:#f0776c;
 }

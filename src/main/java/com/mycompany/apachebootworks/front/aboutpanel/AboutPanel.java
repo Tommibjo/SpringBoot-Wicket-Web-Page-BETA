@@ -18,7 +18,6 @@ public class AboutPanel extends Panel {
     private Label feedback;
     private Label locale;
     private Label markupid;
-  //  private Label page;
     private Label relativePath;
     private Label parent;
     private Label path;
@@ -30,7 +29,6 @@ public class AboutPanel extends Panel {
         this.feedback = new Label("fbmessage", this.getFeedbackMessages());
         this.locale = new Label("locale", this.getLocale());
         this.markupid = new Label("markupid", this.getMarkupId());
-   //     this.page = new Label("page", this.getPage());
         this.relativePath = new Label("relativepath", this.getPageRelativePath());
         this.parent = new Label("parent", this.getParent());
         this.path = new Label("path", this.getPath());
@@ -38,7 +36,6 @@ public class AboutPanel extends Panel {
         add(this.feedback);
         add(this.locale);
         add(this.markupid);
-    //    add(this.page);
         add(this.relativePath);
         add(this.parent);
         add(this.path);

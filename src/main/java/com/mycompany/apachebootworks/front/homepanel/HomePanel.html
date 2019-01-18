@@ -13,11 +13,32 @@ and open the template in the editor.
     <body>
         <wicket:panel>
             <div class="window">
-                <h1>Home</h1>
-                <br/><br/>
-                <div>Here are links to my great other websites.</div>
+                <h1 class="window-title">Home</h1>
+                <h3>My projects</h3>
+                <br/>
+                <div class="thumbnails">
+                    <div data-title="This webpage" class="tooltip">
+                        ​<a target="_blank" href="https://github.com/Tommibjo">
+                            <img src="Places-folder-blue-icon.png"></img>
+                        </a>
+                    </div>
+                    <div data-title="My tooltip" class="tooltip">
+                        ​<a target="_blank" href="https://github.com/Tommibjo">
+                            <img src="Places-folder-blue-icon.png"></img>
+                        </a>
+                    </div>
+                    <div data-title="My tooltip" class="tooltip">
+                        ​<a target="_blank" href="https://github.com/Tommibjo">
+                            <img src="Places-folder-blue-icon.png"></img>
+                        </a>
+                    </div>
+                    <div data-title="My tooltip" class="tooltip">
+                        ​<a target="_blank" href="https://github.com/Tommibjo">
+                            <img src="Places-folder-blue-icon.png"></img>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="comment" wicket:id="comment">Comment panel goes here</div>
-        </wicket:panel>
+        </wicket:panel>  
     </body>
 </html>

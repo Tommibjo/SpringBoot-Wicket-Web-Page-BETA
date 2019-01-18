@@ -2,6 +2,7 @@ package com.mycompany.apachebootworks;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +16,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  */
 
 @SpringBootApplication
-public class Main {
+public class Main extends SpringBootServletInitializer {
 
     /**
      * @param args the command line arguments

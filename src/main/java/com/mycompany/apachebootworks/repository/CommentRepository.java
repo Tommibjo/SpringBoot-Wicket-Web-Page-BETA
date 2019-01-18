@@ -5,12 +5,12 @@
  */
 package com.mycompany.apachebootworks.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *  Model layer: Suorat tietokantayhteydet, ei busines logiikkaa. 
  * @author tommib
  */
-public interface CommentRepository extends JpaRepository<Comment, Long> {
+public interface CommentRepository extends CrudRepository<Comment, Integer> {
     
 }
