@@ -18,10 +18,12 @@ and open the template in the editor.
     margin-left: auto;
     margin-top: 20px;
 }
+
 .comment-input:focus {
     border-color:#6e8095;
     outline: none;
 }
+
 .comment-input {
     padding-left:10px;
     font-size: 15px;
@@ -29,6 +31,7 @@ and open the template in the editor.
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 .comment-button {
     width: 30%;
     height: 25px;
@@ -43,7 +46,15 @@ and open the template in the editor.
     cursor: pointer; 
     outline:0;
 }
+
 .time-left {
     float: left;
     color: #999;
+}
+
+.container {
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
 }

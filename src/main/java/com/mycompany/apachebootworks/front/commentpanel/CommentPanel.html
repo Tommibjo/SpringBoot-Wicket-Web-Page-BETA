@@ -21,15 +21,15 @@ and open the template in the editor.
                     <br/>
                     <input class="comment-button" wicket:id="addcomment" type="submit" value="comment"/>
                 </form>
-                <table wicket:id="theContainer">
-                    <tr wicket:id="commentview">
-                        <td><span wicket:id="name">sinqular name</span></td>
-                        <td><span wicket:id="comment">sinqular comment</span></td> 
+                <div wicket:id="theContainer">
+                    <div wicket:id="commentview" class="container">
+                        <b><span wicket:id="name">sinqular name</span></b><br/>
+                       <span wicket:id="comment">sinqular comment</span>
                         <div class="time_left">
-                            <td><span wicket:id="time">time</span></td>
+                            <i><span wicket:id="time">time</span></i>
                         </div>
-                    </tr>
-                </table>
+                    </div>
+                </div>
             </div>
         </wicket:panel>
     </body>

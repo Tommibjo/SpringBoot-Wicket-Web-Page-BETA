@@ -68,6 +68,7 @@
                 
     </dependencies>
     
+    <!-- Build resourcet vaadittiin, jotta wicketin ja spring bootin yhteistyö toimii tässä applicaatiossa (??) -->
     <build>
         <resources>
             <resource>

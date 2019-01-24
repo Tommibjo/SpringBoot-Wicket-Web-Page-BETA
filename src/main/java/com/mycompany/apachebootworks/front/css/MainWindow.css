@@ -29,9 +29,9 @@ h1.window-title {
     background: #f7f7f7;
 }
 img {
-    max-width: 15%;
+    max-width: 20%;
     border-radius: 4px;
-    padding: 16px;
+    padding: 6px;
 }
 img:hover {
     box-shadow: 0 0 2px 1px rgba(249, 249, 249, 0.7);
@@ -53,4 +53,11 @@ img:hover {
     white-space: nowrap;  
     border-radius: 5px;  
     background:#f0776c;
+}
+.githubThumbnail{
+    display: block;
+    margin-left: 100px;
+    margin-right: auto;
+    margin-top: -50px;
+    width: 100%;
 }

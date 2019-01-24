@@ -34,41 +34,32 @@ public class CommentPanel extends Panel {
     private CommentService commentService;
     @SpringBean
     private CommentPOJO commentpojo;
-    
 
     private IModel commentList;
     private Form commentForm;
     private TextArea<String> comment;
     private TextField<String> name;
+    private AjaxSubmitLink link;
     private WebMarkupContainer listContainer;
 
     public CommentPanel(String id) {
         super(id);
-        
+
         /*
-         *Kommenttien listaus
+         * Haetaan kommentit
          */
-        
-        
         this.commentList = new LoadableDetachableModel() {
             @Override
             protected Object load() {
                 System.out.println("Kommentit saapuneet CommentPaneliin");
                 return commentService.getAllComments();
             }
-        }; 
-        this.comment = new TextArea<>("commentfield", new PropertyModel<>(commentpojo, "comment"));
-        this.name = new TextField<>("namefield", new PropertyModel<>(commentpojo, "name"));
-        this.comment.setOutputMarkupId(true);
-        this.name.setOutputMarkupId(true);
+        };
         this.listContainer = new WebMarkupContainer("theContainer");
-        
-        /*
-        org.apache.wicket.WicketRuntimeException: An error occurred while getting the model object for Component: 
-        [ListView [Component id = commentview, page = com.mycompany.apachebootworks.front.Index, path = panelContainer:panel:comment:theCo$:
-        theContainer:commentview, type = org.apache.wicket.markup.html.list.ListView, isVisible = true, isVersioned = true]]
 
-        */
+        /*
+            Loopataan kommentit ruudulle.
+         */
         this.listContainer.add(new ListView<Comment>("commentview", this.commentList) {
             @Override
             public void populateItem(final ListItem<Comment> item) {
@@ -80,20 +71,19 @@ public class CommentPanel extends Panel {
                 System.out.println(comment.toString());
             }
         });
-        this.listContainer.setOutputMarkupId(true); 
+        this.listContainer.setOutputMarkupId(true);
         add(this.listContainer);
 
-        
-        
-        
         /*
          * Kommenttien rekisterÃ¶inti
          */
-        
-        
-        
+        this.comment = new TextArea<>("commentfield", new PropertyModel<>(commentpojo, "comment"));
+        this.name = new TextField<>("namefield", new PropertyModel<>(commentpojo, "name"));
+        this.comment.setOutputMarkupId(true);
+        this.name.setOutputMarkupId(true);
+
         this.commentForm = new Form("commentform");
-        this.commentForm.add(new AjaxSubmitLink("addcomment") {
+        this.link = new AjaxSubmitLink("addcomment") {
             @Override
             public void onSubmit(AjaxRequestTarget target) {
                 commentService.addComment(commentpojo.getName(), commentpojo.getComment());
@@ -106,7 +96,10 @@ public class CommentPanel extends Panel {
                 target.add(name);
             }
 
-        });
+        };
+        
+        this.commentForm.add(this.link);
+        this.commentForm.setDefaultButton(this.link);
         this.commentForm.add(this.comment);
         this.commentForm.add(this.name);
         add(this.commentForm);

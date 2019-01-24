@@ -22,7 +22,7 @@ public class AuthenticatedSession extends AuthenticatedWebSession {
     @Override
     protected boolean authenticate(String username, String password) {
         boolean Auth = false;
-        if(username.equals("wicket") && password.equals("wicket")){
+        if(username.equals("samlink") && password.equals("samlink")){
             Auth = true;
         }
         System.out.println("Auth: " + Auth);
